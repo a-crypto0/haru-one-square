@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "하루한칸",
+    "slug": "daily-support-app",
+    "version": "0.1.0",
+    "description": "내 생활 할 일을 직접 만들고 차분하게 기록하는 성인용 체크리스트",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./public/favicon.png"
+    }
+  }
+}

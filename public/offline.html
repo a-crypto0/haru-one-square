@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#587864" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/pwa.css" />
+    <title>연결 확인 · 하루한칸</title>
+  </head>
+  <body>
+    <main class="offline-shell">
+      <section class="offline-card" aria-labelledby="offline-title">
+        <div class="offline-mark" aria-hidden="true">✓</div>
+        <h1 id="offline-title">인터넷 연결을 확인해 주세요</h1>
+        <p>한 번 열어 둔 화면과 기록은 기기에 남아 있어요. 연결이 돌아오면 다시 시도해 주세요.</p>
+        <button type="button" onclick="location.reload()">다시 시도</button>
+      </section>
+    </main>
+  </body>
+</html>

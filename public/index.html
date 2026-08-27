@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="application-name" content="하루한칸" />
+    <meta name="description" content="내 생활 할 일을 직접 만들고 차분하게 기록하는 성인용 체크리스트" />
+    <meta name="theme-color" content="#587864" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="하루한칸" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/pwa.css" />
+    <title>하루한칸</title>
+  </head>
+  <body>
+    <noscript>하루한칸을 사용하려면 브라우저에서 자바스크립트를 켜 주세요.</noscript>
+    <div id="root"></div>
+    <script>
+      const localSecureContext =
+        location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      if (
+        'serviceWorker' in navigator &&
+        (location.protocol === 'https:' || localSecureContext)
+      ) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('/sw.js', { scope: '/' })
+            .catch(function () { return undefined; });
+        });
+      }
+    </script>
+  </body>
+</html>

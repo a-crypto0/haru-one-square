@@ -1,0 +1,57 @@
+{
+  "project": {
+    "id": "daily-self-check",
+    "name": "성인 발달장애인 자기관리 체크리스트 앱",
+    "target_users": "일상 할 일을 스스로 관리하고 지원자 1명과 필요한 일정을 공유하는 성인 발달장애인"
+  },
+  "pipeline": {
+    "status": "DEPLOY_READY",
+    "completed_phases": ["PLAN", "DESIGN", "CODE", "CODE_REVIEW", "TEST"]
+  },
+  "plan": {
+    "feature_count": 10,
+    "must_count": 9,
+    "nice_count": 1,
+    "task_count": 29,
+    "next_task": "GITHUB_UPLOAD",
+    "code_progress": {
+      "completed": 29,
+      "total": 29,
+      "current": null,
+      "files_touched": [
+        "App.tsx",
+        "src/db",
+        "src/service",
+        "src/frontend",
+        "src/content/ko/copy.ts",
+        "supabase/migrations/20260826000000_initial_schema.sql",
+        "package.json",
+        "app.json",
+        "public",
+        "assets",
+        "vercel.json",
+        "DEPLOYMENT.md"
+      ]
+    }
+  },
+  "verification": {
+    "typecheck": "passed",
+    "expo_config": "passed",
+    "android_bundle": "passed",
+    "web_export": "passed",
+    "pwa_browser_mobile": "passed",
+    "pwa_offline_reload": "passed",
+    "mode": "production build + Puppeteer Chromium mobile flow + HTTP asset checks"
+  },
+  "deployment": {
+    "channel": "GitHub to Vercel",
+    "source_package": "outputs/haru-one-square-pwa-source-v0.2.0.zip",
+    "actual_url": null
+  },
+  "known_limits": [
+    "Supabase 원격 공유 어댑터와 실제 지원자 수락 흐름 미구현",
+    "Expo 알림·음성·사진 선택 패키지 설치와 실기기 검증 보류",
+    "오늘만 변경한 시간의 1회 알림 미구현"
+  ],
+  "context_summary": "T001~T029 완료. GitHub 업로드용 Expo 웹·PWA·Vercel 설정과 아이콘·오프라인 재실행을 구현했다. TypeScript, Expo config, Android 번들, 웹 프로덕션 export, 390px 처음 설정→오늘 동선, 서비스 워커 오프라인 재실행이 통과했다. 다음은 GitHub 웹 업로드와 Vercel Import이며 실제 배포 URL은 아직 없다."
+}

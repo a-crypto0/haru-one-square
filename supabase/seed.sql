@@ -1,0 +1,7 @@
+-- 로컬 개발용 안내:
+-- 1. Supabase Studio의 Authentication에서 테스트 사용자 2명을 만든다.
+-- 2. 아래 예시의 UUID를 실제 auth.users UUID로 바꾼다.
+-- 3. 주석을 해제해 실행한다. 존재하지 않는 인증 UUID를 임의로 만들지 않는다.
+--
+-- insert into public.profiles (owner_id, display_name)
+-- values ('00000000-0000-0000-0000-000000000000', '테스트 사용자');
