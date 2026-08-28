@@ -17,7 +17,7 @@ interface BottomNavProps {
 export function BottomNav({ activeRoute, items, onNavigate, width, state = 'success' }: BottomNavProps) {
   const { colors, mode } = useFrontendTheme()
   const wide = width >= layout.tabletBreakpoint
-  const visibleItems = items.length > 0 ? items : [{ route: 'today' as const, icon: '⌂', label: copy.nav.today }]
+  const visibleItems = items.length > 0 ? items : [{ route: 'today' as const, icon: '✓', label: copy.nav.today }]
   if (state === 'loading' || state === 'error') {
     return <StateMessage state={state} loadingText={copy.nav.loading} errorText={copy.nav.error} />
   }
@@ -31,6 +31,7 @@ export function BottomNav({ activeRoute, items, onNavigate, width, state = 'succ
         {
           backgroundColor: colors.surface,
           borderColor: colors.border,
+          shadowColor: colors.text,
           width: wide ? (width >= layout.desktopBreakpoint ? layout.desktopRail : layout.tabletRail) : undefined,
         },
       ]}
@@ -47,7 +48,7 @@ export function BottomNav({ activeRoute, items, onNavigate, width, state = 'succ
             style={({ pressed }) => [
               styles.item,
               wide ? styles.wideItem : styles.mobileItem,
-              { borderColor: selected ? colors.primary : colors.transparent },
+              { borderColor: colors.transparent },
               selected ? { backgroundColor: colors.primarySoft } : undefined,
               pressed ? { opacity: 0.72 } : undefined,
             ]}
@@ -71,12 +72,12 @@ export function BottomNav({ activeRoute, items, onNavigate, width, state = 'succ
 }
 
 const styles = StyleSheet.create({
-  container: { borderWidth: 1 },
-  icon: { fontSize: 18, lineHeight: 24 },
+  container: { borderWidth: 1, elevation: 8, shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.12, shadowRadius: 18 },
+  icon: { fontSize: 19, lineHeight: 24 },
   item: { alignItems: 'center', justifyContent: 'center', minHeight: touchSize, padding: spacing.sm },
   label: { textAlign: 'center' },
-  mobile: { bottom: 0, flexDirection: 'row', left: 0, position: 'absolute', right: 0 },
-  mobileItem: { borderTopWidth: 3, flex: 1 },
+  mobile: { borderRadius: 24, bottom: 12, flexDirection: 'row', left: 12, padding: spacing.xs, position: 'absolute', right: 12 },
+  mobileItem: { borderRadius: 18, flex: 1 },
   wide: { alignSelf: 'stretch', borderTopWidth: 0, minHeight: '100%', paddingTop: spacing.lg },
-  wideItem: { borderLeftWidth: 3, marginBottom: spacing.sm, minHeight: 64 },
+  wideItem: { borderRadius: 18, marginHorizontal: spacing.sm, marginBottom: spacing.sm, minHeight: 64 },
 })

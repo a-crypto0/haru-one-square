@@ -12,11 +12,11 @@
     "feature_count": 10,
     "must_count": 9,
     "nice_count": 1,
-    "task_count": 29,
-    "next_task": "GITHUB_UPLOAD",
+    "task_count": 31,
+    "next_task": "GITHUB_PUSH",
     "code_progress": {
-      "completed": 29,
-      "total": 29,
+      "completed": 31,
+      "total": 31,
       "current": null,
       "files_touched": [
         "App.tsx",
@@ -41,11 +41,11 @@
     "web_export": "passed",
     "pwa_browser_mobile": "passed",
     "pwa_offline_reload": "passed",
-    "mode": "production build + Puppeteer Chromium mobile flow + HTTP asset checks"
+    "mode": "production build + Playwright Chrome 390x844 weekly/monthly records, range navigation, weight route + service worker offline reload"
   },
   "deployment": {
     "channel": "GitHub to Vercel",
-    "source_package": "outputs/haru-one-square-pwa-source-v0.2.0.zip",
+    "source_package": null,
     "actual_url": null
   },
   "known_limits": [
@@ -53,5 +53,5 @@
     "Expo 알림·음성·사진 선택 패키지 설치와 실기기 검증 보류",
     "오늘만 변경한 시간의 1회 알림 미구현"
   ],
-  "context_summary": "T001~T029 완료. GitHub 업로드용 Expo 웹·PWA·Vercel 설정과 아이콘·오프라인 재실행을 구현했다. TypeScript, Expo config, Android 번들, 웹 프로덕션 export, 390px 처음 설정→오늘 동선, 서비스 워커 오프라인 재실행이 통과했다. 다음은 GitHub 웹 업로드와 Vercel Import이며 실제 배포 URL은 아직 없다."
+  "context_summary": "T001~T031 완료. frontend-ui v1.2.3에서 기록 통계를 월~일 고정 주간 표와 할 일별 월간 달력 카드로 개편했다. Chrome 390x844에서 주간 28셀, 월간 4카드·124셀, 기간 이동, 체중 화면 이동, 가로 넘침 0, PWA 오프라인 재실행을 확인해 GitHub 업로드 준비가 끝났다."
 }

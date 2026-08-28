@@ -1,23 +1,23 @@
 :root {
   color-scheme: light dark;
-  --color-bg: #faf8f3;
+  --color-bg: #fffdf7;
   --color-surface: #ffffff;
-  --color-text: #292b29;
-  --color-text-muted: #686b67;
-  --color-border: #dedad2;
-  --color-primary: #587864;
-  --color-primary-soft: #e2eee5;
+  --color-text: #26322c;
+  --color-text-muted: #737c76;
+  --color-border: #e7e9e2;
+  --color-primary: #36b879;
+  --color-primary-soft: #e7f8ef;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #1d211e;
-    --color-surface: #292e2a;
-    --color-text: #f5f2ea;
-    --color-text-muted: #c8c4b9;
-    --color-border: #485049;
-    --color-primary: #a4c7ae;
-    --color-primary-soft: #30443a;
+    --color-bg: #17211c;
+    --color-surface: #223029;
+    --color-text: #f8fbf8;
+    --color-text-muted: #c2ccc5;
+    --color-border: #405149;
+    --color-primary: #64d69a;
+    --color-primary-soft: #214b36;
   }
 }
 
@@ -61,7 +61,7 @@ body {
   width: min(100%, 440px);
   padding: 28px;
   border: 1px solid var(--color-border);
-  border-radius: 20px;
+  border-radius: 24px;
   background: var(--color-surface);
   box-shadow: 0 12px 32px rgb(41 43 41 / 10%);
 }
@@ -71,7 +71,7 @@ body {
   width: 52px;
   height: 52px;
   margin-bottom: 20px;
-  border-radius: 16px;
+  border-radius: 18px;
   background: var(--color-primary-soft);
   color: var(--color-primary);
   font-size: 30px;

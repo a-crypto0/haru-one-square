@@ -40,6 +40,6 @@ export function ScreenHeader({
 }
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md, justifyContent: 'space-between', marginBottom: spacing.lg },
+  header: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md, justifyContent: 'space-between', marginBottom: spacing.md },
   heading: { alignItems: 'center', flexDirection: 'row', flexShrink: 1, gap: spacing.md },
 })

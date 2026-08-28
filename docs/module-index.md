@@ -6,7 +6,7 @@
 |---|---|---:|---|---|
 | `db-data` | db | 1.0.0 | 완료 | T001~T007 |
 | `service-core` | service | 1.0.0 | 완료 | T008~T015 |
-| `frontend-ui` | frontend | 1.1.0 | 완료 | T016~T029 |
+| `frontend-ui` | frontend | 1.2.3 | 완료 | T016~T031 |
 
 ## 레이어 간 연결점
 

@@ -25,8 +25,8 @@ interface TaskEditorFormProps {
 }
 
 const icons: IconOption[] = [
-  { icon: '▣', label: copy.picker.toothbrush }, { icon: '◇', label: copy.picker.walking },
-  { icon: '≈', label: copy.picker.shower }, { icon: '▤', label: copy.picker.medicine },
+  { icon: '🪥', label: copy.picker.toothbrush }, { icon: '🚶', label: copy.picker.walking },
+  { icon: '🚿', label: copy.picker.shower }, { icon: '💊', label: copy.picker.medicine },
 ]
 
 function createDraft(initialTask?: ScheduledTask, medicationName = '', medicationPhotoUri?: string): TaskDraft {
@@ -34,7 +34,7 @@ function createDraft(initialTask?: ScheduledTask, medicationName = '', medicatio
     id: initialTask?.task.id,
     kind: initialTask?.task.kind ?? 'standard',
     title: initialTask?.task.title ?? '',
-    icon: initialTask?.task.icon ?? '◇',
+    icon: initialTask?.task.icon ?? '🚶',
     colorToken: initialTask?.task.color_token ?? 'sage',
     scheduledTime: initialTask?.task.scheduled_time ?? null,
     repeatDays: initialTask?.recurrence?.weekdays ?? [0, 1, 2, 3, 4, 5, 6],

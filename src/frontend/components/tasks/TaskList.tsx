@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { copy } from '../../../content/ko/copy'
 import type { ScheduledTask } from '../../../service/contracts'
 import { useFrontendTheme } from '../../theme/ThemeContext'
-import { bodyType, radii, spacing } from '../../theme/tokens'
+import { bodyType, radii, spacing, touchSize } from '../../theme/tokens'
 import type { TaskLogStatus, UiState } from '../../types'
 import { ActionButton, StateMessage } from '../common/ui'
 
@@ -23,6 +23,7 @@ export function TaskList({ tasks, onReorder, onAdd, onEdit, state = 'success' }:
   const [reorderError, setReorderError] = useState(false)
   useEffect(() => { setPendingOrder(tasks); setReorderError(false) }, [tasks])
   const effectiveState = pendingOrder.length === 0 && state === 'success' ? 'empty' : state
+  const touchTarget = mode === 'easy' ? 56 : touchSize
 
   async function move(index: number, offset: -1 | 1) {
     const target = index + offset
@@ -50,21 +51,56 @@ export function TaskList({ tasks, onReorder, onAdd, onEdit, state = 'success' }:
   return (
     <View style={styles.list}>
       {reorderError ? <StateMessage state="error" errorText={copy.task.reorderError} /> : null}
-      {pendingOrder.map((item, index) => (
-        <View key={item.task.id} style={[styles.row, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-          <View style={styles.orderButtons}>
-            <ActionButton disabled={index === 0} label={`↑ ${copy.task.moveUp}`} onPress={() => void move(index, -1)} />
-            <ActionButton disabled={index === pendingOrder.length - 1} label={`↓ ${copy.task.moveDown}`} onPress={() => void move(index, 1)} />
-          </View>
-          <View style={styles.summary}>
-            <Text style={[bodyType(mode), { color: colors.text }]}>{item.task.icon} {item.task.title}</Text>
-            <Text style={[bodyType(mode), { color: colors.textMuted }]}>{item.task.scheduled_time ?? copy.schedule.empty}</Text>
-            <Text style={[bodyType(mode), { color: colors.textMuted }]}>{repeatSummary(item.recurrence?.weekdays ?? [])}</Text>
-            {item.creatorRole === 'supporter' ? <Text style={[bodyType(mode), { color: colors.secondary }]}>{copy.task.supporterAdded}</Text> : null}
-          </View>
-          <ActionButton label={copy.common.edit} onPress={() => onEdit(item.task.id)} tone="secondary" />
-        </View>
-      ))}
+      <View style={[styles.panel, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+        {pendingOrder.map((item, index) => {
+          const softColor = item.task.color_token === 'lavender'
+            ? colors.secondarySoft
+            : item.task.color_token === 'sky'
+              ? colors.infoSoft
+              : item.task.color_token === 'butter'
+                ? colors.warningSoft
+                : colors.primarySoft
+          const rowActions = [
+            { label: copy.task.moveUp, text: '↑', disabled: index === 0, onPress: () => void move(index, -1) },
+            { label: copy.task.moveDown, text: '↓', disabled: index === pendingOrder.length - 1, onPress: () => void move(index, 1) },
+            { label: `${item.task.title} ${copy.common.edit}`, text: copy.common.edit, disabled: false, onPress: () => onEdit(item.task.id) },
+          ]
+          return (
+            <View key={item.task.id} style={[styles.row, { borderBottomColor: colors.border, borderBottomWidth: index === pendingOrder.length - 1 ? 0 : 1 }]}>
+              <View style={[styles.iconBubble, { backgroundColor: softColor, height: touchTarget, width: touchTarget }]}><Text style={styles.icon}>{item.task.icon}</Text></View>
+              <View style={styles.summary}>
+                <Text numberOfLines={2} style={[bodyType(mode), styles.title, { color: colors.text }]}>{item.task.title}</Text>
+                <Text numberOfLines={2} style={[styles.detail, { color: colors.textMuted }]}>{item.task.scheduled_time ?? copy.schedule.empty} · {repeatSummary(item.recurrence?.weekdays ?? [])}</Text>
+                {item.creatorRole === 'supporter' ? <Text numberOfLines={2} style={[styles.supporter, { color: colors.secondary }]}>{copy.task.supporterAdded}</Text> : null}
+              </View>
+              <View style={styles.rowActions}>
+                {rowActions.map((action) => (
+                  <Pressable
+                    accessibilityLabel={action.label}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: action.disabled }}
+                    disabled={action.disabled}
+                    key={action.label}
+                    onPress={action.onPress}
+                    style={({ pressed }) => [
+                      styles.compactButton,
+                      {
+                        backgroundColor: action.disabled ? colors.surfaceSoft : colors.surface,
+                        borderColor: colors.border,
+                        height: touchTarget,
+                        opacity: action.disabled ? 0.45 : pressed ? 0.72 : 1,
+                        width: touchTarget,
+                      },
+                    ]}
+                  >
+                    <Text style={[styles.compactButtonText, { color: colors.text }]}>{action.text}</Text>
+                  </Pressable>
+                ))}
+              </View>
+            </View>
+          )
+        })}
+      </View>
       <ActionButton label={`＋ ${copy.today.add}`} onPress={onAdd} tone="primary" />
     </View>
   )
@@ -84,8 +120,16 @@ function repeatSummary(days: readonly number[]) {
 }
 
 const styles = StyleSheet.create({
+  compactButton: { alignItems: 'center', borderRadius: radii.small, borderWidth: 1, justifyContent: 'center' },
+  compactButtonText: { fontSize: 13, fontWeight: '700', lineHeight: 18, textAlign: 'center' },
+  detail: { fontSize: 13, fontWeight: '600', lineHeight: 18 },
+  icon: { fontSize: 24, lineHeight: 30 },
+  iconBubble: { alignItems: 'center', borderRadius: radii.small, flexShrink: 0, justifyContent: 'center' },
   list: { gap: spacing.md },
-  orderButtons: { gap: spacing.sm },
-  row: { alignItems: 'center', borderRadius: radii.card, borderWidth: 1, flexDirection: 'row', gap: spacing.md, padding: spacing.md },
-  summary: { flex: 1 },
+  panel: { borderRadius: radii.card, borderWidth: 1, overflow: 'hidden' },
+  row: { alignItems: 'center', flexDirection: 'row', gap: spacing.sm, padding: spacing.sm },
+  rowActions: { flexDirection: 'row', gap: spacing.xs },
+  summary: { flex: 1, gap: 2, minWidth: 0 },
+  supporter: { fontSize: 12, fontWeight: '600', lineHeight: 17 },
+  title: { fontWeight: '700' },
 })

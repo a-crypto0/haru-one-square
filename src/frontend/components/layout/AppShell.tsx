@@ -17,9 +17,9 @@ interface AppShellProps extends PropsWithChildren {
 }
 
 const navItems: NavItem[] = [
-  { route: 'today', icon: '⌂', label: copy.nav.today },
+  { route: 'today', icon: '✓', label: copy.nav.today },
   { route: 'records', icon: '▦', label: copy.nav.records },
-  { route: 'together', icon: '◎', label: copy.nav.together },
+  { route: 'together', icon: '♡', label: copy.nav.together },
   { route: 'settings', icon: '⚙', label: copy.nav.settings },
 ]
 
@@ -33,7 +33,7 @@ export function AppShell({ activeRoute, onNavigate, state = 'success', children 
       <ScrollView
         contentContainerStyle={[
           styles.content,
-          { paddingBottom: wide ? spacing.xl : 104 },
+          { paddingBottom: wide ? spacing.xl : 120, paddingTop: wide ? spacing.xl : spacing.md },
         ]}
         keyboardShouldPersistTaps="handled"
         style={styles.scroll}

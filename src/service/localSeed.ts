@@ -62,7 +62,7 @@ export function createInitialState(): LocalState {
     seedTask(
       {
         title: '아침 약',
-        icon: '약',
+        icon: '💊',
         scheduledTime: '08:00',
         weekdays: [0, 1, 2, 3, 4, 5, 6],
         creatorId: LOCAL_SUPPORTER_ID,
@@ -74,7 +74,7 @@ export function createInitialState(): LocalState {
     seedTask(
       {
         title: '산책하기',
-        icon: '산책',
+        icon: '🚶',
         scheduledTime: '09:30',
         weekdays: [2, 4, 6],
       },
@@ -84,7 +84,7 @@ export function createInitialState(): LocalState {
     seedTask(
       {
         title: '양치하기',
-        icon: '양치',
+        icon: '🪥',
         scheduledTime: '20:00',
         weekdays: [0, 1, 2, 3, 4, 5, 6],
       },
@@ -94,7 +94,7 @@ export function createInitialState(): LocalState {
     seedTask(
       {
         title: '머리 감기',
-        icon: '씻기',
+        icon: '🚿',
         scheduledTime: '21:00',
         weekdays: [1, 4],
       },

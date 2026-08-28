@@ -1,5 +1,5 @@
-const CORE_CACHE = 'haru-one-square-core-v1'
-const RUNTIME_CACHE = 'haru-one-square-runtime-v1'
+const CORE_CACHE = 'haru-one-square-core-v2'
+const RUNTIME_CACHE = 'haru-one-square-runtime-v2'
 const CORE_ASSETS = [
   '/',
   '/offline.html',
